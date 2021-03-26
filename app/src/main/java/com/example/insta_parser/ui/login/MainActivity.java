@@ -26,6 +26,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.insta_parser.R;
 import com.example.insta_parser.ui.login.fragments.ComposeFragment;
 import com.example.insta_parser.ui.login.fragments.PostsFragment;
+import com.example.insta_parser.ui.login.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.Parse;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_profile:
                     default:
-                        fragment = new ComposeFragment();
+                        fragment = new ProfileFragment();
                         break;
                 }
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();

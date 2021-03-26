@@ -23,16 +23,12 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class PostsFragment extends Fragment {
 
     public static final String TAG = "PostsFragment";
     private RecyclerView rvPosts;
-    private PostsAdapter adapter;
-    private List<Post> allPosts;
-
+    protected PostsAdapter adapter;
+    protected List<Post> allPosts;
 
     public PostsFragment() {
         // Required empty public constructor
@@ -50,33 +46,24 @@ public class PostsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvPosts = view.findViewById(R.id.rvPosts);
 
-
         //steps to create recycler view
-
         //0. create layout for one row in the list
-
-
         //1. create the adapter
         allPosts = new ArrayList<>();
         adapter = new PostsAdapter(getContext(), allPosts);
-
         //2. create the data source
-
         //3. set the adapter on the recycler view
         rvPosts.setAdapter(adapter);
-
         //4. set the layout manager on the recycler view
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
         queryPosts();
-
-
     }
 
-
-
-    private void queryPosts() {
+    protected void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER); //
+        query.setLimit(20);
+        query.addDescendingOrder(Post.KEY_CREATED_KEY);
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {
@@ -95,9 +82,4 @@ public class PostsFragment extends Fragment {
             }
         });
     }
-
-
-
-
-
 }

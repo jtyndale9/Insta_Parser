@@ -34,7 +34,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/jtyndale9/Insta_Parser/blob/master/Insta_parser.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/jtyndale9/Insta_Parser/blob/master/Insta_parser_2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [Peek]
 

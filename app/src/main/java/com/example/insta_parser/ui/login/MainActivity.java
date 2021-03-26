@@ -21,8 +21,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.insta_parser.R;
+import com.example.insta_parser.ui.login.fragments.ComposeFragment;
+import com.example.insta_parser.ui.login.fragments.PostsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.Parse;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static final String TAG = "MainActivity";
+    final FragmentManager fragmentManager = getSupportFragmentManager();
 
     private BottomNavigationView bottomNavigationView;
 
@@ -57,19 +61,30 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
+                        //TODO: Update fragment
                         Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
+                        fragment = new PostsFragment();
                         break;
                     case R.id.action_compose:
                         Toast.makeText(MainActivity.this, "Compose", Toast.LENGTH_SHORT).show();
+                        fragment = new ComposeFragment();
                         break;
                     case R.id.action_profile:
+                        //TODO: Update fragment
                         Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
                     default:
+                        fragment = new ComposeFragment();
                         break;
                 }
+                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                 return true;
             }
         });
+
+        // Set default selection
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
+
+
     }
 }
 
